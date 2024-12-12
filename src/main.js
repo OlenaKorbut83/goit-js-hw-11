@@ -37,15 +37,19 @@ form.addEventListener('submit', event => {
         });
         hideLoader();
       } else {
-        setTimeout(() => {
-          addImages(data.hits);
-          imageGalleryLightbox();
-          hideLoader();
-        }, 2000);
+        addImages(data.hits);
+        imageGalleryLightbox();
+        hideLoader();
       }
     })
     .catch(error => {
       hideLoader();
+      iziToast.error({
+        title: 'Error',
+        message:
+          'Sorry, there are no images matching your search query. Please try again!',
+        position: 'topRight',
+      });
     });
   form.reset();
 });
